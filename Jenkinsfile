@@ -14,7 +14,7 @@ pipeline {
         stage('build container'){
             steps{
                 script{
-                    docker.build("conexion:latest","-f Dockerfile .")
+                    docker.build("conexion:latest","-f /Users/Kometsales/Desktop/git/prueba_pipeline/Dockerfile .")
                 }
             }
         }
