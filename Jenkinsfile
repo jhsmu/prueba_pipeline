@@ -25,6 +25,13 @@ pipeline {
                 }
             }   
         }
+        stage('execute conexion'){
+            steps{
+                script{
+                    sh 'docker run --rm prueba python conexion.py'
+                }
+            }
+        }
 
     }
 }
