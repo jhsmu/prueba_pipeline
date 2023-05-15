@@ -14,7 +14,8 @@ pipeline {
         stage('build container'){
             steps{
                 script{
-                    docker.build("conexion:latest","-f /Users/Kometsales/Desktop/git/prueba_pipeline/Dockerfile .")
+                    // docker.build("conexion:latest","-f /Users/Kometsales/Desktop/git/prueba_pipeline/Dockerfile .")
+                    sh 'docker build  '
                 }
             }
         }
@@ -28,7 +29,7 @@ pipeline {
         stage('execute conexion'){
             steps{
                 script{
-                    sh 'docker run --rm prueba python conexion.py'
+                    sh 'docker run --rm conexion:latest python conexion.py'
                 }
             }
         }
