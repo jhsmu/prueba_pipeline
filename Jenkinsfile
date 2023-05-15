@@ -15,7 +15,7 @@ pipeline {
             steps{
                 script{
                     //docker.build("conexion:latest","-f /Users/Kometsales/Desktop/git/prueba_pipeline/Dockerfile .")
-                    sh 'docker build DB_conexion . '
+                    sh 'docker build -t DB_conexion . '
                 }
             }
         }
