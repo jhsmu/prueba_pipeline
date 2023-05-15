@@ -11,25 +11,18 @@ pipeline {
     }
 
     stages{
-        stage('build container'){
+        stage('build imagen'){
             steps{
                 script{
-                    docker.build("conexion:latest","-f /Users/Kometsales/Desktop/git/prueba_pipeline/Dockerfile .")
-                    // sh 'docker build  '
+                    //docker.build("conexion:latest","-f /Users/Kometsales/Desktop/git/prueba_pipeline/Dockerfile .")
+                    sh 'docker build DB_conexion . '
                 }
             }
         }
-        stage('execute container'){
+        stage('execute conexion container'){
             steps{
                 script{
-                    docker.image("conexion:latest").run("-e DB_HOST=${DB_HOST} -e DB_PORT=${DB_PORT} -e DB_NAME=${DB_NAME} -e DB_USER=${DB_USER} -e DB_PASSWORD=${DB_PASSWORD} -d")
-                }
-            }   
-        }
-        stage('execute conexion'){
-            steps{
-                script{
-                    sh 'docker run --rm conexion:latest python conexion.py'
+                sh "docker run --rm DB_conexion -e DB_HOST=${DB_HOST} -e DB_PORT=${DB_PORT} -e DB_NAME=${DB_NAME} -e DB_USER=${DB_USER} -e DB_PASSWORD=${DB_PASSWORD} -d python conexion.py" 
                 }
             }
         }
